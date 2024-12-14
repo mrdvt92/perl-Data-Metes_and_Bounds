@@ -280,7 +280,7 @@ if (scalar(@output)) {
 #-------------------------------------------------------------------------------
 
 print $query->p({-align=>'center'},
-        'Copyright &copy; 2001',
+        'Copyright &copy; 2024',
         $query->a({-href=>"mailto:$authoremail"}, "$authorname."),
         'All rights reserved.'
       ), "\n",
