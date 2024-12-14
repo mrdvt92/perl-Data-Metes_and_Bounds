@@ -36,17 +36,18 @@
 #                                                                              #
 ################################################################################
 use strict;
+use warnings;
 use GD;
 use CGI qw(:standard :html3);
-my $query = new CGI;
+my $query = CGI->new;
 
 my $test=$query->param('test') || undef;
 print "Content-type: text/plain\n\n" if $test;
         
 # create a new image
-my $width =abs(int($query->param('width')))  || 640; #+int here for security
-my $height=abs(int($query->param('height'))) || 480; #+int here for security
-my $im = new GD::Image($width, $height);
+my $width  = abs(int($query->param('width')  || 640)); #+int here for security
+my $height = abs(int($query->param('height') || 480)); #+int here for security
+my $im     = GD::Image->new($width, $height);
 
 # allocate some colors
 my %color=(
@@ -363,10 +364,10 @@ if ($scaletext >= 2) {
   if ($scaleticks > 1) {
     @scaleticks=(1..$scaleticks-1);
     @scaleticks=map {$_*$scalemagnitude} @scaleticks;
-    print '@scaleticks: '. join(":", @scaleticks). "\n";
+    print '@scaleticks: '. join(":", @scaleticks). "\n" if $test;
   }
 }
-print '@scaleticks: '. join(":", @scaleticks). "\n";
+print '@scaleticks: '. join(":", @scaleticks). "\n" if $test;
 my $Xscaleend=$scaletext*$scale+$border;
 
 $scaletext.=" ". $query->param('unit') if $query->param('unit');

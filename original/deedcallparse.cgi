@@ -1,8 +1,8 @@
 #!/usr/bin/perl
 use strict;
+use warnings;
 use CGI qw(:standard :html3);
 use CGI::Carp;
-use CGI::Pretty;
 my $query        = CGI->new;
 
 my $mapper       = 'mapper.cgi';
