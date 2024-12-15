@@ -15,7 +15,7 @@ rebuild: build rm run
 	@echo -n
 
 run:
-	docker run --detach --restart=unless-stopped --name $(CONTAINER_NAME) --publish $(PORT):80 -v /etc/power-outlet.ini:/etc/power-outlet.ini $(IMAGE_NAME)
+	docker run --detach --restart=unless-stopped --name $(CONTAINER_NAME) --publish $(PORT):80 $(IMAGE_NAME)
 
 stop:
 	docker stop $(CONTAINER_NAME)
