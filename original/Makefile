@@ -1,10 +1,14 @@
 IMAGE_NAME=local/almalinux8-metes-and-bounds
 CONTAINER_NAME=metes-and-bounds
 PORT=5077
+SRCS_HTML=html/index.html
+SRCS_CONF=conf/ServerName.conf
+SRCS_CGI=cgi-bin/deedcallparse.cgi cgi-bin/mapper.cgi
+SRCS=$(SRCS_HTML) $(SRCS_CONF) $(SRCS_CGI)
 
 all:
 
-build:	Dockerfile index.html ServerName.conf
+build:	Dockerfile $(SRCS)
 	docker build --rm --tag=$(IMAGE_NAME) .
 
 rebuild: build rm run
